@@ -101,9 +101,9 @@ tb1.Num_of_5_star_rating/totalcount.Num_of_total_review as ratio_of_5_star_ratin
 tb2.Num_of_3_star_rating/totalcount.Num_of_total_review as ratio_of_3_star_rating,
 tb3.Num_of_1_star_rating/totalcount.Num_of_total_review as ratio_of_1_star_rating from
 (select hotel_id, count(*) as  Num_of_total_review from tripadvisor_data_for_handson_assignment_ONLY  group by hotel_id ) totalcount
-on tb1.hotel_id = totalcount.hotel_id
 join
 (select hotel_id, count(*) as Num_of_5_star_rating from tripadvisor_data_for_handson_assignment_ONLY where overall_rating = 5 group by hotel_id ) tb1
+on tb1.hotel_id = totalcount.hotel_id
 join
 (select hotel_id,  count(*) as Num_of_3_star_rating from tripadvisor_data_for_handson_assignment_ONLY where overall_rating = 3 group by hotel_id ) tb2
 on tb1.hotel_id = tb2.hotel_id
