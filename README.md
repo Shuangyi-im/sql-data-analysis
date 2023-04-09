@@ -1,5 +1,5 @@
-# SQL-Data-analysis
-Using sql queries, this project aims to build/explore a schema model and analyze the relevant data,to answer specific business questions.
+# SQL-Data-Analysis
+Using sql queries, this project explore the relational databases and perform analysis using sql queries to answer specific business questions.
 
 ## Steps
 1. Import the database from sql files and explore the SQL database entities schema to organize and connect relationships between tables
@@ -12,6 +12,8 @@ Using sql queries, this project aims to build/explore a schema model and analyze
 
  
 * 'tripadvisor_hotel_sample' and 'tripadvisor_data_for_handson_assignment_ONLY' are from online tripadvisor.com reviews of hotels (Hotel Location: USA; accommodation Year: 2012) and the lists of hotel samples showing in the reviews. 
+
+* 'sql_store' database is provided by [CodeWithMosh>Complete SQL Mastery course](https://codewithmosh.com/p/complete-sql-mastery), which includes seven tables: customers,order_item_notes,order_items,orders,order_statuses,products,shippers
 
 
 ## Performing analysis on 'cfpb_compliants 2500'
@@ -115,3 +117,37 @@ order by Num_of_total_review desc;
 ![question3-sql-github](https://user-images.githubusercontent.com/78413872/230779715-0cc51bbc-39c8-4d42-8598-b47cbdce1869.png)
 
 
+## Explore the data modelling, and perform analysis on sql_store database through sql syntax
+### Data modelling for sql_store
+When importing the database from sql files, the model has been pre-designed and embedded in the current schema Diagram. Therefore, I used Database → Reverse Engineer to visualize the entities and their relationships, in order to understand the concepts and logics behind the diagram.
+
+![sql_store_data modelling](https://user-images.githubusercontent.com/78413872/230797482-bfa168ef-5857-4a55-8e74-400805ffb00c.png)
+
+**Question 1: we need to get insights about the total sales&profits by each customer, here the info we need are stored on three tables: customers, orders,order_items.**
+
+```sql
+select 
+	c.customer_id,
+    c.first_name,
+    c.last_name,
+    sum(oi.quantity * oi.unit_price) as total_sales,
+    sum((oi.unit_price - p.unit_price)*oi.quantity) as profit
+from customers as c
+join orders as o using(customer_id)
+join order_items as oi using(order_id)
+group by 
+	c.customer_id,
+    c.first_name,
+    c.last_name
+```
+
+**Question 2: if our manager wants to see a list of customers who have purchased lettuce(product_id =3), including customer id, first name and last name.**<br>
+```sql
+USE sql_store;
+
+select distinct customer_id, first_name, last_name
+from customers
+left join orders USING (customer_id)
+left join order_items USING (order_id)
+where product_id = 3
+```
