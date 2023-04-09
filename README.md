@@ -1,14 +1,14 @@
 # SQL-Data-analysis
 Using sql queries, this project aims to build/explore a schema model and analyze the relevant data,to answer specific business questions.
 
-## Approach
+## Steps
 1. Import the database from sql files and explore the SQL database entities schema to organize and connect relationships between tables
-2.  Check/Assign primary keys, not-null/default values, dataframe(rows, columns, business context) of each table.
+2. Check/Assign primary keys, not-null/default values, dataframe(rows, columns, business context) of each table.
 3. Create SQL queries to clean, organize and extract series of data for analytical purpose.
 
 
 ## Lists of tables
-* 'cfpb_compliants 2500'  has 2500 rows and 15 columns. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of US government, recording the complaint issues on banking activities in 2011.
+* 'cfpb_compliants 2500'  has 2500 rows and 15 columns. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of US government, recording the complaint issues on banking activities between 2011-01-01 and 2021-12-31.
  
 * 'tripadvisor_hotel_sample' and 'tripadvisor_data_for_handson_assignment_ONLY' are from online tripadvisor.com reviews of hotels (Hotel Location: USA; accommodation Year: 2012) and the lists of hotel samples showing in the reviews. 
 
