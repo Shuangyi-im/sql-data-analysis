@@ -24,7 +24,7 @@ Update cfpb_complaints_2500 set Sub_product = NULL where Sub_product = '';
 
 **Task 2: please produce a list of different companies and products, and count their frequencies(of received compliants) respectively**<br>
 ```sql 
-select Company,Product,count(*) AS freq FROM cfpb_complaints_2500 GROUP BY Company,Product;
+select Company,Product,count(*) as freq from cfpb_complaints_2500 group by Company,Product;
 ```
 ![task1-sql](https://user-images.githubusercontent.com/78413872/230774478-e7ab97bf-3e38-4999-8c48-098393e0359d.png)
 
