@@ -1,14 +1,14 @@
 # SQL-Data-Analysis
-Using sql queries, this project explore the relational databases and perform analysis using sql queries to answer specific business questions.
+Using sql queries, this project explores relational databases and performs analysis using sql queries to answer specific business questions.
 
 ## Steps
 1. Import the database from sql files and explore the SQL database entities schema to organize and connect relationships between tables
-2. Check/Assign primary keys, not-null/default values, dataframe(rows, columns, business context) of each table.
+2. Check/Assign primary keys, NOT NULL/DEFAULT values, dataframe(rows, columns, business context) of each table.
 3. Create SQL queries to clean, organize and extract series of data for analytical purpose.
 
 
 ## Lists of tables
-* ['cfpb_compliants 2500'](https://github.com/Shuangyi-im/sql-data-analysis/blob/74b6cb7d75a3c902005f7e15cea8448b7e69f86b/databases/cfpb_compliants%202500.sql)  has 2500 rows and 15 columns. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of US government, recording the complaint issues on banking activities between 2011-01-01 and 2021-12-31.
+* ['cfpb_compliants 2500'](https://github.com/Shuangyi-im/sql-data-analysis/blob/74b6cb7d75a3c902005f7e15cea8448b7e69f86b/databases/cfpb_compliants%202500.sql)  has 2500 rows and 15 columns. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of the US government, recording the complaint issues on banking activities between 2011-01-01 and 2021-12-31.
 
  
 * 'tripadvisor_hotel_sample' and 'tripadvisor_data_for_handson_assignment_ONLY' are from online tripadvisor.com reviews of hotels (Hotel Location: USA; accommodation Year: 2012) and the lists of hotel samples showing in the reviews. 
@@ -18,7 +18,7 @@ Using sql queries, this project explore the relational databases and perform ana
 
 ## Performing analysis on 'cfpb_compliants 2500'
 
-**Task 1: please count how many empty values there are in the column of Sub_product at the cfpb_complaints_2500; Then eeplace these empty value with NULL**<br>
+**Task 1: please count how many empty values there are in the column of Sub_product at the cfpb_complaints_2500; Then replace these empty value with NULL**<br>
 ```sql
 Select count(*) from cfpb_complaints_2500 where Sub_product = '';
 Update cfpb_complaints_2500 set Sub_product = NULL where Sub_product = '';
@@ -123,7 +123,7 @@ When importing the database from sql files, the model has been pre-designed and 
 
 ![sql_store_data modelling](https://user-images.githubusercontent.com/78413872/230797482-bfa168ef-5857-4a55-8e74-400805ffb00c.png)
 
-**Question 1: we need to get insights about the total sales&profits by each customer, here the info we need are stored on three tables: customers, orders,order_items.**
+**Question 1: we need to get insights about the total sales&profits by each customer, here the info we need are stored on three tables: _customers, orders,order_items_.**
 
 ```sql
 select 
@@ -143,11 +143,36 @@ group by
 
 **Question 2: if our manager wants to see a list of customers who have purchased lettuce(product_id =3), including customer id, first name and last name.**<br>
 ```sql
-USE sql_store;
-
 select distinct customer_id, first_name, last_name
 from customers
 left join orders USING (customer_id)
 left join order_items USING (order_id)
 where product_id = 3
 ```
+
+**Question 3: find those products that are never been purchased from the _products_ table**
+```sql
+select *
+from products
+where product_id not in(
+select distinct product_id
+from order_items
+```
+
+**Question 4: Classify customers into three categories: 'Bronze', 'Silver', 'Gold' based on their points:<2k、 2k~3k、>3k respectively.**
+```sql
+select
+    concat(first_name, ' ', last_name) as customer,
+    points,
+    CASE
+        when points < 2000 then 'Bronze'
+        when points between 2000 and 3000 then 'Silver'
+        when points > 3000 then 'Gold'
+        -- ELSE null
+    end as category
+from customers
+order by points desc
+```
+![sql-q4-github-customer points](https://user-images.githubusercontent.com/78413872/230854215-7ca7dd8b-bd67-4dca-a222-0ee84c343708.png)
+
+
