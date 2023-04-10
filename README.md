@@ -127,7 +127,7 @@ When importing the database from sql files, the model has been pre-designed and 
 
 ```sql
 select 
-	c.customer_id,
+    c.customer_id,
     c.first_name,
     c.last_name,
     sum(oi.quantity * oi.unit_price) as total_sales,
@@ -136,7 +136,7 @@ from customers as c
 join orders as o using(customer_id)
 join order_items as oi using(order_id)
 group by 
-	c.customer_id,
+    c.customer_id,
     c.first_name,
     c.last_name
 ```
