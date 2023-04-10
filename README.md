@@ -74,7 +74,7 @@ group by Company, Issue
 ![sql-task5+ github](https://user-images.githubusercontent.com/78413872/230776148-7b79fe4c-cc1e-4067-a01b-9bb58b6cba25.png)
 
 ## Performing analysis on TripAdvisor reviews
-**Question 1: In TripAdvisor dataset, which location (locality) receives the largest amount of hotel reviews and which one receives the lowest amount of reviews?**
+**Question 1: in TripAdvisor dataset, which location (locality) receives the largest amount of hotel reviews and which one receives the lowest amount of reviews?**
 ```sql
 select b.locality, count(a.id) as fre from
 tripadvisor_data_for_handson_assignment_ONLY a 
@@ -84,7 +84,7 @@ group by b.locality
 order by fre desc
 ```
 
-**Question 2:please calculate the number of the reviews that hotels received, and only consider those hotels that received reviews having at least one review of an overall rating of 5, 3 and 1, respectively. If all the reviews given to a hotel XXX ONLY having an overall rating of either 4 or 5, it will be excluded, because it does not have any reviews offering an overall rating of 3 or 1.**
+**Question 2: please calculate the number of the reviews that hotels received, and only consider those hotels that received reviews having at least one review of an overall rating of 5, 3 and 1, respectively. If all the reviews given to a hotel XXX ONLY having an overall rating of either 4 or 5, it will be excluded, because it does not have any reviews offering an overall rating of 3 or 1.**
 ```sql
 select rw5.*, rw3.Num_of_3_star_rating, rw1.Num_of_1_star_rating from (select hotel_id, count(*) as Num_of_5_star_rating from tripadvisor_data_for_handson_assignment_ONLY where overall_rating = 5 group by hotel_id ) rw5
 join
@@ -96,7 +96,7 @@ on rw1.hotel_id = rw3.hotel_id
 ```
 ![q1-github-sql](https://user-images.githubusercontent.com/78413872/230779379-8ba80d4a-fa47-485a-bfd1-749cf25a1a84.png)
 
-**Question 3:, please calculate the proportions of reviews giving an overall rating of 5 and 3 and 1 respectively, and only consider those hotels that received reviews having at least one review of an overall rating of 5, 3 and 1, respectively. Excluding those hotels with less than 10 reviews from the analysis. Please obtain following result via one command**
+**Question 3: please calculate the proportions of reviews giving an overall rating of 5 and 3 and 1 respectively, and only consider those hotels that received reviews having at least one review of an overall rating of 5, 3 and 1, respectively. Excluding those hotels with less than 10 reviews from the analysis. Please obtain following result via one command**
 ```sql
 select tb1.hotel_id, totalcount.Num_of_total_review,
 tb1.Num_of_5_star_rating/totalcount.Num_of_total_review as ratio_of_5_star_rating,
