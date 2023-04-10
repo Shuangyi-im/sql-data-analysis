@@ -7,13 +7,14 @@ Using sql queries, this project explores relational databases and performs analy
 3. Create SQL queries to clean, organize and extract series of data for analytical purpose.
 
 
-## Lists of tables
+## Lists of tablebase
 * ['cfpb_compliants 2500'](https://github.com/Shuangyi-im/sql-data-analysis/blob/74b6cb7d75a3c902005f7e15cea8448b7e69f86b/databases/cfpb_compliants%202500.sql)  has 2500 rows and 15 columns. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of the US government, recording the complaint issues on banking activities between 2011-01-01 and 2021-12-31.
 
  
 * 'tripadvisor_hotel_sample' and 'tripadvisor_data_for_handson_assignment_ONLY' are from online tripadvisor.com reviews of hotels (Hotel Location: USA; accommodation Year: 2012) and the lists of hotel samples showing in the reviews. 
 
-* 'sql_store' database is provided by [CodeWithMosh>Complete SQL Mastery course](https://codewithmosh.com/p/complete-sql-mastery), which includes seven tables: customers,order_item_notes,order_items,orders,order_statuses,products,shippers
+* 'sql_store' database is provided by [CodeWithMosh>Complete SQL Mastery course](https://codewithmosh.com/p/complete-sql-mastery), which includes seven tables: customers,order_item_notes,order_items,orders,order_statuses,products,shippers.<br>
+_For data safety reasons, I have only uploaded the 'cfpb_compliants 2500' data file, which is publicly accessible, and included a partial customer table from the 'sql_store' database._
 
 
 ## Performing analysis on 'cfpb_compliants 2500'
@@ -161,17 +162,17 @@ from order_items
 
 **Question 4: Classify customers into three categories: 'Bronze', 'Silver', 'Gold' based on their points:<2k、 2k~3k、>3k respectively.**
 ```sql
-select
-    concat(first_name, ' ', last_name) as customer,
+SELECT
+    CONCAT(first_name, ' ', last_name) AS customer,
     points,
     CASE
-        when points < 2000 then 'Bronze'
-        when points between 2000 and 3000 then 'Silver'
-        when points > 3000 then 'Gold'
+        WHEN points < 2000 THEN 'Bronze'
+        WHEN points BETWEEN 2000 AND 3000 THEN 'Silver'
+        WHEN points > 3000 THEN 'Gold'
         -- ELSE null
-    end as category
-from customers
-order by points desc
+    END AS category
+FROM customers
+ORDER BY points DESC
 ```
 ![sql-q4-github-customer points](https://user-images.githubusercontent.com/78413872/230854215-7ca7dd8b-bd67-4dca-a222-0ee84c343708.png)
 
