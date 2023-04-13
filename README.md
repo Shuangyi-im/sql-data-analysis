@@ -8,7 +8,7 @@ Using sql queries, this project explores relational databases and performs analy
 
 
 ## Lists of tablebase
-* ['cfpb_compliants 2500'](https://github.com/Shuangyi-im/sql-data-analysis/blob/74b6cb7d75a3c902005f7e15cea8448b7e69f86b/databases/cfpb_compliants%202500.sql)  has 2500 rows and 15 columns. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of the US government, recording the complaint issues on banking activities between 2011-01-01 and 2021-12-31.
+* ['cfpb_compliants 2500'](https://github.com/Shuangyi-im/sql-data-analysis/blob/74b6cb7d75a3c902005f7e15cea8448b7e69f86b/databases/cfpb_compliants%202500.sql)  has 2500 rows and 15 columns. Consumer Financial Protection Bureau (CFPB) launched a public Consumer Complaint Database on credit cards, mortgages, private student loan etc. The data are from [Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) of an official website of the US government, recording the complaint issues on banking activities between 2011-01-01 and 2021-12-31.
 
  
 * 'tripadvisor_hotel_sample' and 'tripadvisor_data_for_handson_assignment_ONLY' are from online tripadvisor.com reviews of hotels (Hotel Location: USA; accommodation Year: 2012) and the lists of hotel samples showing in the reviews. 
